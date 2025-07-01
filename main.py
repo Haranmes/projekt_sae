@@ -1,4 +1,3 @@
-"""ndjrfbjsfjff"""
 import json
 from Medienarten.medium import Medium
 from Medienarten.buch import Buch
