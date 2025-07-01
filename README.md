@@ -1,1 +1,1 @@
-# projekt_sae
+# Projektthema 2: Bibliotheksverwaltungssystem (OOP mit Vererbung + Speicherung)

@@ -1,0 +1,9 @@
+{
+    "medien": [
+        "{\n    \"_Buch__autor\": \"ramez solimannnn\",\n    \"_Buch__isbn\": \"4232903458\",\n    \"_Buch__seitenzahl\": 1000,\n    \"_Medium__ausgeliehen\": null,\n    \"_Medium__titel\": \"Der linux user 4000\",\n    \"_id\": 0\n}",
+        "{\n    \"_Buch__autor\": \"ramez solimannnn\",\n    \"_Buch__isbn\": \"4232903458\",\n    \"_Buch__seitenzahl\": 1000,\n    \"_Medium__ausgeliehen\": null,\n    \"_Medium__titel\": \"Der linux user 4000\",\n    \"_id\": 0\n}",
+        "{\n    \"_Medium__ausgeliehen\": null,\n    \"_Medium__titel\": \"Tim Gotschalk\",\n    \"_Zeitschrift__ausgabe\": \"12\",\n    \"_Zeitschrift__erscheinnungsjahr\": 2023,\n    \"_id\": 1\n}",
+        "{\n    \"_DigitalesMedium__format\": \"CD\",\n    \"_DigitalesMedium__laufzeit\": \"2:00\",\n    \"_Medium__ausgeliehen\": null,\n    \"_Medium__titel\": \"eine undendliche geschichte\",\n    \"_id\": 2\n}"
+    ],
+    "nutzer": [
+        
