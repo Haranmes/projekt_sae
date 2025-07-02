@@ -77,12 +77,10 @@ class Verwaltung:
                 self.__medien.remove(medium)
                 self.datei_speichern()
                 
-    def ausleihen(self, nutzer_id: int, medium_id: int):
-        """Leiht ein Medium an einen Nutzer aus."""
-        # Prüfe ob Medium existiert
-        medium_data = self._finde_medium(medium_id)
-        if not medium_data:
-            raise ValueError("Das Medium existiert nicht.")
+    def ausleihen(self, nutzer_id: str, medium_id: str):
+        medium = [m for m in self.__medien if m.get("_id") == medium_id][0]
+        medium.ausleihen(nutzer_id)
+        self.datei_speichern()
         
         # Prüfe ob Nutzer existiert
         nutzer_data = self._finde_nutzer(nutzer_id)
