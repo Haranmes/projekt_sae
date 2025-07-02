@@ -53,16 +53,9 @@ class Verwaltung:
             print(f"Fehler beim Speichern der Datei {self.__dateiname}.")
             
     def nutzer_hinzufuegen(self, nutzer: Nutzer):
-        """Fügt einen neuen Nutzer hinzu, falls er noch nicht existiert."""
-        nutzer_id = nutzer.get("id")
-        
-        if self._nutzer_existiert(nutzer_id):
-            print(f"Nutzer mit ID {nutzer_id} existiert bereits.")
-            return
-        
-        self.__nutzer.append(nutzer)
-        self.datei_speichern()
-
+        if nutzer not in self.__nutzer:
+            self.__nutzer.append(nutzer)
+            self.datei_speichern()
         
     def nutzer_entfernen(self, nutzer_id: int):
         """Entfernt einen Nutzer anhand der ID."""
