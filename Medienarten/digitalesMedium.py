@@ -1,4 +1,4 @@
-from classes.medium import Medium
+from .medium import Medium
 
 class DigitalesMedium(Medium):
     def __init__(self, titel: str, format: str, laufzeit: str):

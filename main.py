@@ -1,10 +1,5 @@
 import json
-from Medienarten.medium import Medium
-from Medienarten.buch import Buch
-from Medienarten.zeitschrift import Zeitschrift
-from Medienarten.digitalesMedium import DigitalesMedium
-from Medienarten.nutzer import Nutzer
-from Medienarten.verwaltung import Verwaltung
+from Medienarten import *
 
 def main():
     try:
