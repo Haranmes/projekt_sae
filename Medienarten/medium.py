@@ -1,5 +1,5 @@
 from abc import ABC, abstractmethod
-
+from .nutzer import Nutzer
 import json
 class Medium(ABC):
     

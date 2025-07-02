@@ -2,7 +2,8 @@
 from typing import List, Optional
 from .buch import Buch
 from .zeitschrift import Zeitschrift
-from .digitalesMedium import DigitalesMedium 
+from .digitalesMedium import DigitalesMedium
+from .nutzer import Nutzer
 import re
 import os
 import json
@@ -58,8 +59,9 @@ class Verwaltung():
                 self.datei_speichern()
                 
     def medium_hinzufuegen(self, medium: Buch | Zeitschrift | DigitalesMedium):
-        self.__medien.append(medium)
-        self.datei_speichern()
+          if medium not in self.__medien:
+            self.__medien.append(medium)
+            self.datei_speichern()
         
     def medium_entfernen(self, medium_id: str):
         for medium in self.__medien:
