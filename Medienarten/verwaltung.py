@@ -71,7 +71,7 @@ class Verwaltung():
                 self.datei_speichern()
                 
     def ausleihen(self, nutzer_id: str, medium_id: str):
-        medium = [m for m in self.__medien if m.id == medium_id][0]
+        medium = [m for m in self.__medien if m.get("_id") == medium_id][0]
         medium.ausleihen(nutzer_id)
         self.datei_speichern()
         
