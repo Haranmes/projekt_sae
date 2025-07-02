@@ -78,14 +78,11 @@ class Verwaltung:
             self.__medien.append(medium)
             self.datei_speichern()
         
-    def medium_entfernen(self, medium_id: int):
-        """Entfernt ein Medium anhand der ID."""
-        medium = self._finde_medium(medium_id)
-        if medium:
-            self.__medien.remove(medium)
-            self.datei_speichern()
-        else:
-            print(f"Medium mit ID {medium_id} nicht gefunden.")
+    def medium_entfernen(self, medium_id: str):
+        for medium in self.__medien:
+            if medium.get("_id") == medium_id:
+                self.__medien.remove(medium)
+                self.datei_speichern()
                 
     def ausleihen(self, nutzer_id: int, medium_id: int):
         """Leiht ein Medium an einen Nutzer aus."""
