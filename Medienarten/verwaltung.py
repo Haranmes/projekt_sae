@@ -4,7 +4,6 @@ from .buch import Buch
 from .zeitschrift import Zeitschrift
 from .digitalesMedium import DigitalesMedium
 from .nutzer import Nutzer
-from .medium import Medium
 import re
 import os
 import json
@@ -74,16 +73,10 @@ class Verwaltung:
         else:
             print(f"Nutzer mit ID {nutzer_id} nicht gefunden.")
                 
-    def medium_hinzufuegen(self, medium: Union[Buch, Zeitschrift, DigitalesMedium]):
-        """Fügt ein neues Medium hinzu, falls es noch nicht existiert."""
-        medium_id = medium.get("id")
-        
-        if self._medium_existiert(medium_id):
-            print(f"Medium mit ID {medium_id} existiert bereits.")
-            return
-        
-        self.__medien.append(medium)
-        self.datei_speichern()
+    def medium_hinzufuegen(self, medium: Buch | Zeitschrift | DigitalesMedium):
+          if medium not in self.__medien:
+            self.__medien.append(medium)
+            self.datei_speichern()
         
     def medium_entfernen(self, medium_id: int):
         """Entfernt ein Medium anhand der ID."""
