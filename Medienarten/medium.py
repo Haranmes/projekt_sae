@@ -1,5 +1,5 @@
 from abc import ABC, abstractmethod
-from Medienarten.nutzer import Nutzer
+
 import json
 class Medium(ABC):
     

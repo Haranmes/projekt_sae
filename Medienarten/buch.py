@@ -1,4 +1,4 @@
-from classes.medium import Medium
+from .medium import Medium
 import json
 class Buch(Medium):
     def __init__(self, titel : str, autor: str, isbn: str, seitenzahl: int):

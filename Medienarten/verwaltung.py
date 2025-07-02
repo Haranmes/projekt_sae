@@ -1,9 +1,8 @@
 # importing all classes
 from typing import List, Optional
-from classes.buch import Buch
-from classes.zeitschrift import Zeitschrift
-from classes.digitalesMedium import DigitalesMedium 
-from classes.nutzer import Nutzer
+from .buch import Buch
+from .zeitschrift import Zeitschrift
+from .digitalesMedium import DigitalesMedium 
 import re
 import os
 import json
