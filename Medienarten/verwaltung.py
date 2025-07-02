@@ -49,8 +49,9 @@ class Verwaltung():
             print(f"Fehler beim Speichern der Datei {self.__dateiname}.")
             
     def nutzer_hinzufuegen(self, nutzer: Nutzer):
-        self.__nutzer.append(nutzer)
-        self.datei_speichern()
+        if nutzer not in self.__nutzer:
+            self.__nutzer.append(nutzer)
+            self.datei_speichern()
         
     def nutzer_entfernen(self, nutzer_id: str):
         for nutzer in self.__nutzer:
