@@ -65,7 +65,7 @@ class Verwaltung():
         
     def medium_entfernen(self, medium_id: str):
         for medium in self.__medien:
-            if medium.id == medium_id:
+            if medium.get("_id") == medium_id:
                 self.__medien.remove(medium)
                 self.datei_speichern()
                 
