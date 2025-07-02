@@ -1,38 +1,27 @@
 {
     "medien": [
         {
-            "id": 0,
-            "titel": "Der linux user 4000",
-            "autor": "ramez solimannnn",
-            "isbn": "4232903458",
-            "seitenzahl": 1000,
-            "ausgeliehen": null
+            "_id": 0,
+            "_Medium__titel": "Der linux user 4000",
+            "_Medium__ausgeliehen": null,
+            "_Buch__autor": "ramez solimannnn",
+            "_Buch__isbn": "4232903458",
+            "_Buch__seitenzahl": 1000
         },
         {
-            "id": 1,
-            "titel": "Tim Gotschalk",
-            "ausgabe": "12",
-            "erscheinungsjahr": 2023,
-            "ausgeliehen": null
+            "_id": 1,
+            "_Medium__titel": "Tim Gotschalk",
+            "_Medium__ausgeliehen": null,
+            "_Zeitschrift__ausgabe": "12",
+            "_Zeitschrift__erscheinnungsjahr": 2023
         },
         {
-            "id": 2,
-            "titel": "eine undendliche geschichte",
-            "format": "CD",
-            "laufzeit": "2:00",
-            "ausgeliehen": null
+            "_id": 2,
+            "_Medium__titel": "eine undendliche geschichte",
+            "_Medium__ausgeliehen": null,
+            "_DigitalesMedium__format": "CD",
+            "_DigitalesMedium__laufzeit": "2:00"
         }
     ],
-    "nutzer": [
-        {
-            "id": 1,
-            "name": "Max Mustermann",
-            "ausgeliehene_medien": []
-        },
-        {
-            "id": 2,
-            "name": "Erika Musterfrau",
-            "ausgeliehene_medien": []
-        }
-    ]
+    "nutzer": []
 }
