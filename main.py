@@ -1,6 +1,6 @@
 import json
 from Medienarten import *
-
+from Medienarten.nutzer import Nutzer
 def main():
     try:
         
@@ -11,13 +11,14 @@ def main():
         digitales_medium = DigitalesMedium("eine undendliche geschichte", "CD", "2:00")
 
         verwaltung.medium_hinzufuegen(buch.__dict__)
-        verwaltung.medium_hinzufuegen(zeitschrift.__dict__)
-        verwaltung.medium_hinzufuegen(digitales_medium.__dict__)
+        # verwaltung.medium_hinzufuegen(zeitschrift.__dict__)
+        # verwaltung.medium_hinzufuegen(digitales_medium.__dict__)
+
+        #verwaltung.medium_entfernen(0)
+        nutzer = Nutzer("1", "Max Mustermann")
         
-        # nutzer = Nutzer("1", "Max Mustermann")
-        
-        # verwaltung.nutzer_hinzufuegen(nutzer)
-        # verwaltung.ausleihen("1", "1")
+        verwaltung.nutzer_hinzufuegen(nutzer.__dict__)
+        verwaltung.ausleihen("1", "1")
         
     except ValueError as e:
         print(f"Fehler: {e}")
