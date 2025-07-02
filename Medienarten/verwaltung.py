@@ -3,7 +3,6 @@ from typing import List, Optional
 from .buch import Buch
 from .zeitschrift import Zeitschrift
 from .digitalesMedium import DigitalesMedium 
-# from .nutzer import Nutzer
 import re
 import os
 import json
