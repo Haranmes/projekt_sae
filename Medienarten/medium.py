@@ -8,21 +8,20 @@ class Medium(ABC):
     def __init__(self, titel: str):
         self._id = Medium.id
         Medium.id += 1
-        self.__titel = titel
-        self.__ausgeliehen = None
-
+        self._titel = titel
+        self._ausgeliehen = None
     def ausleihen(self, nutzer_id: Nutzer) -> bool:
-        if self.__ausgeliehen:
+        if self._ausgeliehen is not None:
             return False
         
-        self.__ausgeliehen = nutzer_id
+        self._ausgeliehen = nutzer_id
         return True
         
     def zurueckgeben(self) -> bool:
-        if not self.__ausgeliehen:
+        if not self._ausgeliehen:
             return False
     
-        self.__ausgeliehen = None
+        self._ausgeliehen = None
         return True
 
     def to_json(self):
