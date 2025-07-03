@@ -10,12 +10,9 @@ def main():
         zeitschrift = Zeitschrift("Tim Gotschalk", "12", 2023)
         digitales_medium = DigitalesMedium("eine undendliche geschichte", "CD", "2:00")
         print(buch.__dict__)
-<<<<<<< HEAD
-=======
         verwaltung.medium_hinzufuegen(buch.to_dict())
         verwaltung.medium_hinzufuegen(zeitschrift.to_dict())
         verwaltung.medium_hinzufuegen(digitales_medium.to_dict())
->>>>>>> 4f245c0 (.)
 
         # verwaltung.medium_entfernen(0)
         nutzer1 = Nutzer(1, "Max Mustermann")
