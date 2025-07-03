@@ -58,13 +58,10 @@ class Verwaltung:
             self.datei_speichern()
         
     def nutzer_entfernen(self, nutzer_id: int):
-        """Entfernt einen Nutzer anhand der ID."""
-        nutzer = self._finde_nutzer(nutzer_id)
-        if nutzer:
-            self.__nutzer.remove(nutzer)
-            self.datei_speichern()
-        else:
-            print(f"Nutzer mit ID {nutzer_id} nicht gefunden.")
+        for nutzer in self.__nutzer:
+            if nutzer.id == nutzer_id:
+                self.__nutzer.remove(nutzer)
+                self.datei_speichern()
                 
     def medium_hinzufuegen(self, medium: Buch | Zeitschrift | DigitalesMedium):
           if medium not in self.__medien:
