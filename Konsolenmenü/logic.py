@@ -1,6 +1,7 @@
 import questionary
 from Medienarten import *
-from helper_functions import *
+from .medien_operationen import *
+from .nutze_operationen import *
 
 def konsolen_menü(): 
     verwaltung = Verwaltung("MeineBibliothek")
@@ -10,7 +11,9 @@ def konsolen_menü():
         "Auswählen eines Nutzers",
         "Ein neues Medium hinzufügen"
         "Ein Mediuzm verleihen"
-        ]
+        "Medium wurde wieder zurückgegeben",
+        "Beenden"
+    ]
 
     answer = questionary.rawselect(
         "Wählen Sie eine Option aus:",
@@ -20,17 +23,20 @@ def konsolen_menü():
     if answer == choice[0]:
         # Erstellen Nutzers und Registrieren
         nutzer_erstellen(verwaltung=verwaltung)
-      
+
 
     elif answer == choice[1]:
         # Auswählen eines Nutzers
         # Hier muss auf die Implementierung von Issue #20 gewartet werden
-        pass
+        nutzer_auswahl(verwaltung=verwaltung)
 
     elif answer == choice[2]:
-        # Ein Medium anlegen   
-        registrieren_medium(verwaltung=verwaltung)
-        
+        # Ein Medium anlegen  
+        medium_operationen(verwaltung=verwaltung, registrieren_oder_löschen=True)
+    
+    elif answer == choice[3]:
+        beenden = True
+        return beenden        
 
 
 

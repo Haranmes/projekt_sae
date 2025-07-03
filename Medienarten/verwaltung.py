@@ -16,7 +16,6 @@ class Verwaltung:
     def __init__(self, name: str):
         self.__name = name
         self.__dateiname = self._erstelle_dateiname(name)
-        
         data = self.datei_laden()
         self.__medien = data.get("medien", [])
         self.__nutzer = data.get("nutzer", [])

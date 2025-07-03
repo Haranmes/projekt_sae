@@ -2,37 +2,25 @@
     "medien": [
         {
             "id": 0,
-            "titel": "Der linux user 4000",
-            "autor": "ramez solimannnn",
-            "isbn": "4232903458",
-            "seitenzahl": 1000,
-            "ausgeliehen": null
-        },
-        {
-            "id": 1,
-            "titel": "Tim Gotschalk",
-            "ausgabe": "12",
-            "erscheinungsjahr": 2023,
-            "ausgeliehen": null
-        },
-        {
-            "id": 2,
-            "titel": "eine undendliche geschichte",
-            "format": "CD",
-            "laufzeit": "2:00",
+            "titel": "Never give up",
+            "autor": "Tim",
+            "isbn": "12345657",
+            "seitenzahl": "45",
             "ausgeliehen": null
         }
     ],
     "nutzer": [
         {
+            "id": 0,
+            "name": "Tim"
+        },
+        {
             "id": 1,
-            "name": "Max Mustermann",
-            "ausgeliehene_medien": []
+            "name": "Niklas"
         },
         {
             "id": 2,
-            "name": "Erika Musterfrau",
-            "ausgeliehene_medien": []
+            "name": "Karl"
         }
     ]
 }
