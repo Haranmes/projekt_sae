@@ -236,3 +236,14 @@ class Verwaltung:
             pass
             
         return None
+    def get_all_users(self):
+        """Gibt alle Nutzer zurück."""
+        with open(self.__dateiname, 'r', encoding='utf-8') as file:
+            data = json.load(file)
+            return data.get("nutzer", [])
+        
+    def get_all_medien(self):
+        """Gibt alle Medien zurück."""
+        with open(self.__dateiname, 'r', encoding='utf-8') as file:
+            data = json.load(file)
+            return data.get("medien", [])
