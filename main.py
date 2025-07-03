@@ -10,16 +10,20 @@ def main():
         zeitschrift = Zeitschrift("Tim Gotschalk", "12", 2023)
         digitales_medium = DigitalesMedium("eine undendliche geschichte", "CD", "2:00")
         print(buch.__dict__)
+<<<<<<< HEAD
+=======
+        verwaltung.medium_hinzufuegen(buch.to_dict())
+        verwaltung.medium_hinzufuegen(zeitschrift.to_dict())
+        verwaltung.medium_hinzufuegen(digitales_medium.to_dict())
+>>>>>>> 4f245c0 (.)
 
-        verwaltung.medium_hinzufuegen(buch.__dict__)
-        # verwaltung.medium_hinzufuegen(zeitschrift.__dict__)
-        # verwaltung.medium_hinzufuegen(digitales_medium.__dict__)
+        # verwaltung.medium_entfernen(0)
+        nutzer1 = Nutzer(1, "Max Mustermann")
+        nutzer2 = Nutzer(2, "Erika Musterfrau")
 
-        #verwaltung.medium_entfernen(0)
-        nutzer = Nutzer(1, "Max Mustermann")
-        
-        verwaltung.nutzer_hinzufuegen(nutzer.__dict__)
-        verwaltung.ausleihen(1, 0)
+        verwaltung.zurueckgeben(0)
+        # verwaltung.nutzer_hinzufuegen(nutzer1.to_dict())
+     
         
     except ValueError as e:
         print(f"Fehler: {e}")

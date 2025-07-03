@@ -29,18 +29,6 @@ class Verwaltung:
         return f"verwaltung_{res}.json"
         
     def datei_laden(self) -> dict:
-<<<<<<< HEAD
-        """Lädt die Daten aus der JSON-Datei."""
-        if not os.path.exists(self.__dateiname):
-            return {}
-            
-        try:
-            with open(self.__dateiname, 'r', encoding='utf-8') as file:
-                return json.load(file)
-        except json.JSONDecodeError:
-            print(f"Fehler beim Laden der Datei {self.__dateiname}.")
-            return {}
-=======
         data = {}
         
         if os.path.exists(self.__dateiname):
@@ -51,7 +39,6 @@ class Verwaltung:
                 print(f"Fehler beim Laden der Datei {self.__dateiname}.")
         
         return data
->>>>>>> 5e08854 (feat: method nutzer_hinzufuegen is now fully functional)
     
     def datei_speichern(self):
         """Speichert die aktuellen Daten in die JSON-Datei."""
