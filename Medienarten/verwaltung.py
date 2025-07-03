@@ -4,6 +4,7 @@ from .buch import Buch
 from .zeitschrift import Zeitschrift
 from .digitalesMedium import DigitalesMedium
 from .nutzer import Nutzer
+from .medium import Medium
 import re
 import os
 import json
