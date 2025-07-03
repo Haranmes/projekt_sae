@@ -29,6 +29,7 @@ class Verwaltung:
         return f"verwaltung_{res}.json"
         
     def datei_laden(self) -> dict:
+<<<<<<< HEAD
         """Lädt die Daten aus der JSON-Datei."""
         if not os.path.exists(self.__dateiname):
             return {}
@@ -39,6 +40,18 @@ class Verwaltung:
         except json.JSONDecodeError:
             print(f"Fehler beim Laden der Datei {self.__dateiname}.")
             return {}
+=======
+        data = {}
+        
+        if os.path.exists(self.__dateiname):
+            try:
+                with open(self.__dateiname, 'r', encoding='utf-8') as file:
+                    data = json.load(file)
+            except json.JSONDecodeError:
+                print(f"Fehler beim Laden der Datei {self.__dateiname}.")
+        
+        return data
+>>>>>>> 5e08854 (feat: method nutzer_hinzufuegen is now fully functional)
     
     def datei_speichern(self):
         """Speichert die aktuellen Daten in die JSON-Datei."""
@@ -54,175 +67,153 @@ class Verwaltung:
             print(f"Fehler beim Speichern der Datei {self.__dateiname}.")
             
     def nutzer_hinzufuegen(self, nutzer: Nutzer):
-        if nutzer not in self.__nutzer:
-            self.__nutzer.append(nutzer)
-            self.datei_speichern()
+        if os.path.exists(self.__dateiname) == True:
+            with open(self.__dateiname, 'r', encoding='utf-8') as file:
+                data = json.load(file)
+                if "nutzer" not in data:
+                    data["nutzer"] = []
+                for n in data["nutzer"]:
+                    if n.get("id") == nutzer.get("id"):
+                        print(f"Nutzer mit ID {nutzer.get('id')} existiert bereits.")
+                        return
+                
+                data["nutzer"].append(nutzer)
+                self.__nutzer = data["nutzer"]
+                self.datei_speichern()
+        else:
+            if nutzer not in self.__nutzer:
+                self.__nutzer.append(nutzer)
+                self.datei_speichern()
+
         
     def nutzer_entfernen(self, nutzer_id: int):
         for nutzer in self.__nutzer:
-            if nutzer.id == nutzer_id:
+            if nutzer.get("id") == nutzer_id:
                 self.__nutzer.remove(nutzer)
                 self.datei_speichern()
                 
     def medium_hinzufuegen(self, medium: Buch | Zeitschrift | DigitalesMedium):
+        if os.path.exists(self.__dateiname) == True:
+            with open(self.__dateiname, 'r', encoding='utf-8') as file:
+                data = json.load(file)
+                if "medien" not in data:
+                    data["medien"] = []
+                
+
+                for m in data["medien"]:
+                    if m.get("id") == medium.get("id"):
+                        print(f"Medium mit ID {medium.get('id')} existiert bereits.")
+                        return
+                
+
+                data["medien"].append(medium)
+                self.__medien = data["medien"]
+                self.datei_speichern()
+        else:
           if medium not in self.__medien:
             self.__medien.append(medium)
             self.datei_speichern()
         
-    def medium_entfernen(self, medium_id: str):
+    def medium_entfernen(self, medium_id: int):
         for medium in self.__medien:
-            if medium.get("_id") == medium_id:
+            if medium.get("id") == medium_id:
                 self.__medien.remove(medium)
                 self.datei_speichern()
                 
-    def ausleihen(self, nutzer_id: str, medium_id: str):
-        medium = [m for m in self.__medien if m.get("_id") == medium_id][0]
-        medium.ausleihen(nutzer_id)
-        self.datei_speichern()
-        
-        # Prüfe ob Nutzer existiert
-        nutzer_data = self._finde_nutzer(nutzer_id)
-        if not nutzer_data:
-            raise ValueError("Der Nutzer existiert nicht.")
-        
-        # Prüfe ob Medium bereits ausgeliehen ist
-        if medium_data.get("ausgeliehen") is not None:
-            raise ValueError("Das Medium ist bereits ausgeliehen.")
-        
-        # Erstelle Medium-Objekt
-        medium_objekt = self._erstelle_medium_objekt(medium_data)
-        if not medium_objekt:
-            raise ValueError("Medium-Typ konnte nicht erkannt werden.")
-        
-        # Führe Ausleihe durch
-        medium_objekt.ausleihen(nutzer_id)
-        
-        # Aktualisiere Medium-Status
-        medium_data["ausgeliehen"] = nutzer_id
-        
-        # Füge Medium zur Nutzerliste hinzu
-        if "ausgeliehene_medien" not in nutzer_data:
-            nutzer_data["ausgeliehene_medien"] = []
-        
-        if medium_id not in nutzer_data["ausgeliehene_medien"]:
-            nutzer_data["ausgeliehene_medien"].append(medium_id)
-        
-        self.datei_speichern()
+    def ausleihen(self, nutzer_id: int, medium_id: int):
+        medium = [m for m in self.__medien if m.get("id") == medium_id][0]
+        with open(self.__dateiname, 'r', encoding='utf-8') as file:
+            data = json.load(file)
+            items = 0
+
+            for id in data.get("medien",{}):
+                test = data.get("medien",{})[items]
+                if test.get("id") == medium_id:
+                    try:
+                        medium = Buch(test.get("titel"), test.get("autor"), 
+                                    test.get("isbn"), test.get("seitenzahl"))
+                        continue
+                    except:
+                        try:
+                            medium = Zeitschrift(test.get("titel"), test.get("ausgabe"), 
+                                                    test.get("erscheinungsjahr"))
+                            continue
+                        except:
+                            try:
+                                medium = DigitalesMedium(test.get("titel"), test.get("format"), 
+                                                    test.get("laufzeit"))
+                                continue
+                            except:
+                                medium = None
+                                continue
+                            
+
+            
+                items += 1
+
+            if medium is not None:
+                if data.get("medien",{})[items].get("ausgeliehen") is None:
+                    medium.ausleihen(nutzer_id)
+                    if medium_id not in self.__nutzer[0]["ausgeliehene_medien"]:
+                        nutzer = 0
+                        for n in self.__nutzer:
+                            if n.get("id") == nutzer_id:
+                                self.__nutzer[nutzer]["ausgeliehene_medien"].append(medium_id)
+                            nutzer += 1
+                    for m in self.__medien:
+                        if m.get("id") == medium_id:
+                            m["ausgeliehen"] = nutzer_id
+                    self.datei_speichern()
+                else:
+                    raise ValueError("Das Medium ist bereits ausgeliehen.")
 
     def zurueckgeben(self, medium_id: int):
-        """Gibt ein ausgeliehenes Medium zurück."""
-        # Finde das Medium
-        medium_data = self._finde_medium(medium_id)
-        if not medium_data:
+        medium = [m for m in self.__medien if m.get("id") == medium_id][0]
+        with open(self.__dateiname, 'r', encoding='utf-8') as file:
+            data = json.load(file)
+            items = 0
+
+            for id in data.get("medien",{}):
+                test = data.get("medien",{})[items]
+                if test.get("id") == medium_id:
+                    try:
+                        medium = Buch(test.get("titel"), test.get("autor"), 
+                                    test.get("isbn"), test.get("seitenzahl"))
+                        continue
+                    except:
+                        try:
+                            medium = Zeitschrift(test.get("titel"), test.get("ausgabe"), 
+                                                    test.get("erscheinungsjahr"))
+                            continue
+                        except:
+                            try:
+                                medium = DigitalesMedium(test.get("titel"), test.get("format"), 
+                                                    test.get("laufzeit"))
+                                continue
+                            except:
+                                medium = None
+                                continue
+                            
+
+            
+                items += 1
+        if medium is not None:
+
+            nutzer_id = None
+            for m in self.__medien:
+                if m.get("id") == medium_id:
+                    nutzer_id = m.get("ausgeliehen")
+                    m["ausgeliehen"] = None  
+                    break
+            if nutzer_id is not None:
+                for n in self.__nutzer:
+                    if n.get("id") == nutzer_id and "ausgeliehene_medien" in n:
+                        if medium_id in n["ausgeliehene_medien"]:
+                            n["ausgeliehene_medien"].remove(medium_id)
+                        break
+                medium.zurueckgeben()
+                self.datei_speichern()
+            else:
+                raise ValueError("Das Medium ist nicht ausgeliehen.")
+        else:
             raise ValueError("Das Medium existiert nicht.")
-        
-        # Prüfe ob Medium ausgeliehen ist
-        nutzer_id = medium_data.get("ausgeliehen")
-        if nutzer_id is None:
-            raise ValueError("Das Medium ist nicht ausgeliehen.")
-        
-        # Erstelle Medium-Objekt
-        medium_objekt = self._erstelle_medium_objekt(medium_data)
-        if not medium_objekt:
-            raise ValueError("Medium-Typ konnte nicht erkannt werden.")
-        
-        # Führe Rückgabe durch
-        medium_objekt.zurueckgeben()
-        
-        # Aktualisiere Medium-Status
-        medium_data["ausgeliehen"] = None
-        
-        # Entferne Medium aus Nutzerliste
-        nutzer_data = self._finde_nutzer(nutzer_id)
-        if nutzer_data and "ausgeliehene_medien" in nutzer_data:
-            if medium_id in nutzer_data["ausgeliehene_medien"]:
-                nutzer_data["ausgeliehene_medien"].remove(medium_id)
-        
-        self.datei_speichern()
-    
-    def alle_medien_anzeigen(self) -> List[dict]:
-        """Gibt alle Medien zurück."""
-        return self.__medien
-    
-    def alle_nutzer_anzeigen(self) -> List[dict]:
-        """Gibt alle Nutzer zurück."""
-        return self.__nutzer
-    
-    def verfuegbare_medien_anzeigen(self) -> List[dict]:
-        """Gibt alle verfügbaren (nicht ausgeliehenen) Medien zurück."""
-        return [medium for medium in self.__medien if medium.get("ausgeliehen") is None]
-    
-    def ausgeliehene_medien_anzeigen(self) -> List[dict]:
-        """Gibt alle ausgeliehenen Medien zurück."""
-        return [medium for medium in self.__medien if medium.get("ausgeliehen") is not None]
-    
-    def _nutzer_existiert(self, nutzer_id: int) -> bool:
-        """Prüft, ob ein Nutzer mit der gegebenen ID bereits existiert."""
-        return any(n.get("id") == nutzer_id for n in self.__nutzer)
-    
-    def _medium_existiert(self, medium_id: int) -> bool:
-        """Prüft, ob ein Medium mit der gegebenen ID bereits existiert."""
-        return any(m.get("id") == medium_id for m in self.__medien)
-    
-    def _finde_nutzer(self, nutzer_id: int) -> Optional[dict]:
-        """Findet einen Nutzer anhand der ID."""
-        for nutzer in self.__nutzer:
-            if nutzer.get("id") == nutzer_id:
-                return nutzer
-        return None
-    
-    def _finde_medium(self, medium_id: int) -> Optional[dict]:
-        """Findet ein Medium anhand der ID."""
-        for medium in self.__medien:
-            if medium.get("id") == medium_id:
-                return medium
-        return None
-    
-    def _erstelle_medium_objekt(self, medium_data: dict) -> Optional[Union[Buch, Zeitschrift, DigitalesMedium]]:
-        """Erstellt ein Medium-Objekt aus den Daten."""
-        try:
-            # Versuche Buch zu erstellen
-            if "autor" in medium_data and "isbn" in medium_data:
-                return Buch(
-                    medium_data.get("titel"), 
-                    medium_data.get("autor"), 
-                    medium_data.get("isbn"), 
-                    medium_data.get("seitenzahl")
-                )
-        except:
-            pass
-            
-        try:
-            # Versuche Zeitschrift zu erstellen
-            if "ausgabe" in medium_data and "erscheinungsjahr" in medium_data:
-                return Zeitschrift(
-                    medium_data.get("titel"), 
-                    medium_data.get("ausgabe"), 
-                    medium_data.get("erscheinungsjahr")
-                )
-        except:
-            pass
-            
-        try:
-            # Versuche Digitales Medium zu erstellen
-            if "format" in medium_data and "laufzeit" in medium_data:
-                return DigitalesMedium(
-                    medium_data.get("titel"), 
-                    medium_data.get("format"), 
-                    medium_data.get("laufzeit")
-                )
-        except:
-            pass
-            
-        return None
-    def get_all_users(self):
-        """Gibt alle Nutzer zurück."""
-        with open(self.__dateiname, 'r', encoding='utf-8') as file:
-            data = json.load(file)
-            return data.get("nutzer", [])
-        
-    def get_all_medien(self):
-        """Gibt alle Medien zurück."""
-        with open(self.__dateiname, 'r', encoding='utf-8') as file:
-            data = json.load(file)
-            return data.get("medien", [])
