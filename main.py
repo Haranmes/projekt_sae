@@ -15,10 +15,10 @@ def main():
         # verwaltung.medium_hinzufuegen(digitales_medium.__dict__)
 
         #verwaltung.medium_entfernen(0)
-        nutzer = Nutzer("1", "Max Mustermann")
+        nutzer = Nutzer(1, "Max Mustermann")
         
         verwaltung.nutzer_hinzufuegen(nutzer.__dict__)
-        verwaltung.ausleihen("1", "1")
+        verwaltung.ausleihen(1, 0)
         
     except ValueError as e:
         print(f"Fehler: {e}")
