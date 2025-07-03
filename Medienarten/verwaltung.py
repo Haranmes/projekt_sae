@@ -53,7 +53,7 @@ class Verwaltung():
             self.__nutzer.append(nutzer)
             self.datei_speichern()
         
-    def nutzer_entfernen(self, nutzer_id: str):
+    def nutzer_entfernen(self, nutzer_id: int):
         for nutzer in self.__nutzer:
             if nutzer.id == nutzer_id:
                 self.__nutzer.remove(nutzer)
