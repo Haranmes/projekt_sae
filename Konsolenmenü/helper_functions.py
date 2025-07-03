@@ -19,4 +19,4 @@ def registrieren_medium(verwaltung : Verwaltung):
         medium_choice
     ).ask()
 
-    if answer == ddd
+    if answer == 
