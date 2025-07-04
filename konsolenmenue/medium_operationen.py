@@ -59,7 +59,7 @@ def medium_ausleihen(verwaltung: Verwaltung) -> None:
     
     nutzer: Nutzer = nutzer_auswahl(verwaltung=verwaltung)
 
-    if medium is None:
+    if nutzer is None:
         print("Diese Verwaltung hat keine Nutzer.")
         return
     
