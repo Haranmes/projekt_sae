@@ -63,5 +63,5 @@ class Medium(ABC):
 
 
     @abstractmethod
-    def to_dict() -> dict:
+    def to_dict(self) -> dict:
         pass
