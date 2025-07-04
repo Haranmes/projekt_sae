@@ -1,0 +1,40 @@
+{
+    "medien": [
+        {
+            "id": 5,
+            "titel": "The Wolf of Wall Street",
+            "format": "Blueray",
+            "laufzeit": "02:59",
+            "ausgeliehen": 4,
+            "typ": 2
+        },
+        {
+            "id": 6,
+            "titel": "Can't Hurt Me",
+            "autor": "David Goggins",
+            "isbn": "3742324708",
+            "seitenzahl": 386,
+            "ausgeliehen": 4,
+            "typ": 0
+        },
+        {
+            "id": 7,
+            "titel": "Der Bitcoin-Standard: Die dezentrale Alternative zum Zentralbankensystem",
+            "autor": "Saifedean Ammous",
+            "isbn": "3982109507",
+            "seitenzahl": 432,
+            "ausgeliehen": 4,
+            "typ": 0
+        }
+    ],
+    "nutzer": [
+        {
+            "id": 4,
+            "name": "Tim Herb"
+        },
+        {
+            "id": 5,
+            "name": "Heiko Aschauer"
+        }
+    ]
+}
