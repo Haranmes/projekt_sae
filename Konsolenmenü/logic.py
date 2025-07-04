@@ -10,7 +10,7 @@ def konsolen_menü():
         "Registrierung eines Nutzers in der Verwaltung",
         "Löschen eines Nutzers", #TODO
         "Ein neues Medium hinzufügen",
-        "Ein Mediuzm verleihen", #TODO
+        "Ein Medium verleihen", #TODO
         "Medium wurde wieder zurückgegeben",#TODO
         "Beenden"
     ]
