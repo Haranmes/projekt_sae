@@ -17,7 +17,7 @@ Dieses Projekt ist ein objektorientiertes Bibliotheksverwaltungssystem, das in P
 Das System nutzt objektorientierte Programmierung mit Vererbung:
 - Basisklasse `Medium` mit spezialisierten Unterklassen für verschiedene Medientypen
 - Klasse `Nutzer` für die Benutzerverwaltung
-- Klasse `Verwaltung` als zentrale Administrationsstelle für die Zentralle Benutzer- und Medienverwaltung
+- Klasse `Verwaltung` als zentrale Administrationsstelle für die Benutzer- und Medienverwaltung
 - Konsolenbasierte Benutzeroberfläche für eine einfache Bedienung
 
 ### Projektstruktur
