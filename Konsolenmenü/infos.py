@@ -1,4 +1,5 @@
 import questionary
+import logging
 
 def buch_infos():
     questions = [
@@ -50,25 +51,21 @@ def digitales_medium():
     answers = questionary.prompt(questions)
     return answers
 
+def get_valid_year():
+    while True:
+        eingabe = questionary.text("Wann ist die Zeitschrift erschienen? (Jahr)").ask()
+        try:
+            return int(eingabe)
+        except ValueError:
+            logging.error("Bitte gib eine gültige Jahreszahl ein (z.B. 2023).")
+
 def zeit_schrift():
-
-    questions = [
-        {
-            "type": "text",
-            "name": "titel",
-            "message": "Wie lautet der Titel der Zeitschrift?",
-        },
-        {
-            "type": "text",
-            "name": "ausgabe",
-            "message": "Um welche Ausgabe handelt es sich?",
-        },
-        {
-            "type": "text",
-            "name": "ercheinungsjahr",
-            "message": "Wann ist die Zeitschrift erschienen?",
-        },
-    ]
-
-    answers = questionary.prompt(questions)
-    return answers
+    titel = questionary.text("Wie lautet der Titel der Zeitschrift?").ask()
+    ausgabe = questionary.text("Um welche Ausgabe handelt es sich?").ask()
+    erscheinungsjahr = get_valid_year()
+    
+    return {
+        "titel": titel,
+        "ausgabe": ausgabe,
+        "erscheinungsjahr": erscheinungsjahr,
+    }

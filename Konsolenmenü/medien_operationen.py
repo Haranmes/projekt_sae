@@ -1,6 +1,7 @@
 import questionary
 from Medienarten import *
 from .infos import *
+import logging
 
 def medium_operationen(verwaltung : Verwaltung, registrieren_oder_löschen : bool): 
     medium_choice = [

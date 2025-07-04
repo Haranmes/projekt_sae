@@ -25,7 +25,7 @@ def main():
     #     # verwaltung.ausleihen(2,2)
     #     # verwaltung.nutzer_hinzufuegen(nutzer2.to_dict())
     #     users = verwaltung.get_all_users()
-        
+        3
     #     num = 0
     #     for user in users:
     #         print(users[num].get("name"))

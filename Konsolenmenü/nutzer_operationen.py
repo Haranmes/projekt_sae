@@ -11,13 +11,29 @@ def nutzer_erstellen(verwaltung : Verwaltung):
 
 def nutzer_auswahl(verwaltung : Verwaltung):
     users = verwaltung.get_all_users()
-    
+
     user_selection = []
 
     for user in users:
-        user_selection.append(user.get("name"))
+        user_selection.append(f"{user.get("id")}")
     
-    nutzer_auswählen = questionary.rawselect(
+    nutzer_id = questionary.rawselect(
         "Wählen Sie einen Nutzer aus:",
         user_selection
     ).ask()
+
+    choices = [
+        "Nutzer löschen",
+        "Medium erhalten",
+        "Medium verleihen"
+    ]
+    
+    operation = questionary.rawselect(
+        f"Nutzeraktion für **{nutzer_name}** auswählen:",
+        choices
+    )
+
+    
+
+# def nutzer_löschen(nutzer_name : str):
+

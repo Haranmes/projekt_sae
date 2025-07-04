@@ -2,25 +2,20 @@
     "medien": [
         {
             "id": 0,
-            "titel": "Never give up",
-            "autor": "Tim",
-            "isbn": "12345657",
-            "seitenzahl": "45",
+            "titel": "cooles zeugs",
+            "ausgabe": "3",
+            "erscheinungsjahr": 2023,
             "ausgeliehen": null
         }
     ],
     "nutzer": [
         {
-            "id": 0,
+            "id": 3,
             "name": "Tim"
         },
         {
             "id": 1,
-            "name": "Niklas"
-        },
-        {
-            "id": 2,
-            "name": "Karl"
+            "name": "Karl Gustav"
         }
     ]
 }
