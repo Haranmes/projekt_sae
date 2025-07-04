@@ -49,7 +49,7 @@ def zeitschrift_infos() -> dict:
         {
             "type": "text",
             "name": "erscheinungsjahr",
-            "message": "In welchem Jahr ist die Zeitschrif erschienen?",
+            "message": "In welchem Jahr ist die Zeitschrift erschienen?",
         },
     ]
 
